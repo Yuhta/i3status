@@ -24,6 +24,10 @@ i3status has the following dependencies:
 On debian-based systems, the following line will install all requirements:
 apt-get install libconfuse-dev libyajl-dev libasound2-dev libiw-dev asciidoc libcap2-bin
 
+On systems using RPM such as Fedora, you can use the following command to
+install them:
+yum install libconfuse-devel yajl-devel alsa-lib-devel wireless-tools-devel libpcap asciidoc
+
  ┌────────────────────────────┐
  │ Upstream                   │
  └────────────────────────────┘
