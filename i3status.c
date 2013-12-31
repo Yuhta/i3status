@@ -302,6 +302,12 @@ int main(int argc, char *argv[]) {
                 CFG_END()
         };
 
+        cfg_opt_t mail_opts[] = {
+                CFG_STR("format", "Mail: %status", CFGF_NONE),
+                CFG_CUSTOM_COLOR_OPTS,
+                CFG_END()
+        };
+
         cfg_opt_t opts[] = {
                 CFG_STR_LIST("order", "{}", CFGF_NONE),
                 CFG_SEC("general", general_opts, CFGF_NONE),
@@ -319,6 +325,7 @@ int main(int argc, char *argv[]) {
                 CFG_SEC("ddate", ddate_opts, CFGF_NONE),
                 CFG_SEC("load", load_opts, CFGF_NONE),
                 CFG_SEC("cpu_usage", usage_opts, CFGF_NONE),
+                CFG_SEC("mail", mail_opts, CFGF_NONE),
                 CFG_CUSTOM_COLOR_OPTS,
                 CFG_END()
         };
@@ -545,6 +552,12 @@ int main(int argc, char *argv[]) {
                         CASE_SEC("cpu_usage") {
                                 SEC_OPEN_MAP("cpu_usage");
                                 print_cpu_usage(json_gen, buffer, cfg_getstr(sec, "format"));
+                                SEC_CLOSE_MAP;
+                        }
+
+                        CASE_SEC("mail") {
+                                SEC_OPEN_MAP("mail");
+                                print_mail(json_gen, buffer, cfg_getstr(sec, "format"));
                                 SEC_CLOSE_MAP;
                         }
                 }
